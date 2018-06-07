@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ES3 Classes 3</title>
+</head>
+<body>
+	<script type="text/javascript">
+		class Ninja {
+			constructor(name){
+				this.name = name
+				this.health = 100
+				this.speed = 3
+				this.strength = 3
+			}
+
+			sayName(){
+				console.log("My name is : " + this.name)
+			}
+
+			showStats(){
+				console.log(
+					"Name: " + this.name +
+					", Health: " + this.health + 
+					", Speed: " + this.speed +
+					", Strength: " + this.strength
+					)
+			}
+
+			drinkSake(){
+				this.health += 10
+			}
+		}
+
+		const Alan = new Ninja("Alan")
+		Alan.sayName()
+		Alan.drinkSake()
+		Alan.showStats()
+
+		class Sensei extends Ninja {
+			constructor(name){
+				super(name)
+				this.health = 200
+				this.speed = 10
+				this.strength = 10
+				this.wisdom = 10
+			}
+
+			sayName(){
+				// console.log(super.sayName())
+				super.sayName()
+			}
+
+			showStats(){
+				// console.log(super.showStats())
+				super.showStats()
+			}
+			speakWisdom(){
+				super.drinkSake()
+				console.log("I'm speaking wisdom so listen to me young one.")
+			}
+		}
+
+		const Ophie = new Sensei("Ophie")
+		Ophie.sayName()
+		Ophie.showStats()
+		Ophie.speakWisdom()
+		Ophie.showStats() 
+	</script>
+</body>
+</html>
