@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Deck of Cards </title>
+</head>
+<body>
+	<script type="text/javascript">
+		class Player{
+			constructor(name){
+				this.name = name
+				this.hand = []
+			}
+
+			discard(){
+				this.hand.pop()
+				return "a card has been discarded"
+			}
+		}
+
+		class Card{
+			constructor(suit, string, number){
+				this.suit = suit
+				this.value = string
+				this.number = number
+			}
+
+			showCards(){
+				console.log(this.suit, this.value, this.number)
+			}
+		}
+
+		class Deck {
+			constructor(name){
+				this.name = name
+				this.cards = []
+			}
+
+			populateDeck(){
+				var cardValues = ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king']
+				var suits = ['Diamond','Clubs','Heart','King']
+
+				for(var i = 0; i <4; i++){
+					for(var x = 1; x < 14; x++){
+						var newCard = new Card(suits[i], cardValues[x-1],x)
+						this.cards.push(newCard)
+					}
+				}
+				return "Deck has been popluated. Make Sure to Shuffle before use!"
+			}
+			shuffleDeck(){
+				if(this.cards.length <2){
+					return "Deck is empty, please used the populateDeck method to give your deck more cards."
+				}
+				for(var a = 0; a<1000; a++){
+					var slot1 = Math.floor(Math.random() * 52)
+					var slot2 = Math.floor(Math.random() * 52)
+					var card1 = this.cards[slot1]
+					var card2 = this.cards[slot2]
+					var temp  = card1
+					this.cards[slot1] = card2
+					this.cards[slot2] = temp
+				}
+				return "Deck has been shuffled!"
+			}
+			reset(){
+				this.cards = []
+				this.populateDeck()
+				return "Deck has been reset"
+			}
+
+			deal(player){
+				player.hand.push(this.cards.pop())
+				console.log(player.name + " has been dealt a card")
+			}
+
+		}
+
+		var test = new Deck("Deck1")
+		test.populateDeck()
+		test.shuffleDeck()
+
+		var Alan = new Player("Alan")
+
+
+	</script>
+</body>
+</html>
